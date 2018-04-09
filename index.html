@@ -9,18 +9,23 @@
         Woo YeongJun
     </title>
     <link rel="stylesheet" type="text/css" href="assets/style-sheet/common.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/icons/favicon.ico?v=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon.ico?v=1">
 </head>
     <body>
         <main class="container">
             <div class="pictures">
+                <noscript>
+                    <img src="assets/images/optimized/real-gangster.jpg" alt="hax0r's profile" />
+                </noscript>
                 <div class="show-me">
                 </div>
             </div>
             <div class="about">
                 <div class="me">
                     <section class="headline">
-                        Woo YeongJun
+                        <h1>
+                            Woo YeongJun
+                        </h1>
                     </section>
                     <section class="subscribe-me">
                         <a href="https://blog.hax0r.info" class="button" target="_blank">
@@ -60,5 +65,105 @@
                 </div>
             </div>
         </main>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117084408-1"></script>
+        <script type="text/javascript">
+            function setCookie(n, v, d)
+            {
+                if ( d ) {
+                    var date = new Date();
+                    date.setTime(date.getTime()+(d*24*60*60*1000));
+                    var expires = "; expires="+date.toGMTString();
+                } else {
+                    var expires = "";
+                }
+                document.cookie = n+"="+v+expires+"; path=/";
+            }
+
+            function getCookie(n)
+            {
+                var nameEQ = n + "=",
+                    ca = document.cookie.split(';');
+                for ( var i = 0; i < ca.length; i++ ) {
+                    var c = ca[i];
+                    while ( c.charAt(0) == ' ' ) {
+                        c = c.substring(1,c.length);
+                    }
+                    if ( c.indexOf(nameEQ) == 0 ) {
+                        return c.substring(nameEQ.length,c.length);
+                    }
+                }
+                return null;
+            }
+
+            function addClass(el, className)
+            {
+                ( el.classList ) ? el.classList.add(className) : el.className += ' ' + className
+            }
+
+            function removeClass(el, className)
+            {
+                ( el.classList ) ? el.classList.remove(className) : el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+
+            function loaded(fn)
+            {
+                if ( document.readyState != 'loading' ){
+                    fn();
+                } else if ( document.addEventListener ) {
+                    document.addEventListener('DOMContentLoaded', fn);
+                } else {
+                    document.attachEvent('onreadystatechange', function() {
+                        if ( document.readyState != 'loading' ) {
+                            fn();
+                        }
+                    });
+                }
+            }
+
+            loaded(function()
+            {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-117084408-1');
+
+                if ( 'WebkitAppearance' in document.documentElement.style ) {
+                    var radius = 0,
+                        node = document.querySelector('.headline > h1');
+
+                    var interval = window.setInterval(function ()
+                    {
+                        node.style.webkitMask = '-webkit-gradient(radial, 17 17, ' + radius + ', 17 17, ' + (radius + 25) + ', from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)))'
+                        radius++;
+                        if ( ( node.offsetWidth + 15 ) === radius ) {
+                            window.clearInterval(interval)
+                        }
+                    }, 8);
+                }
+
+                var backgroundImages = [
+                        'one',
+                        'two',
+                        'three'
+                    ],
+                    backgroundImagesCount = backgroundImages.length,
+                    idx = parseInt(getCookie('current_background_idx')) || 0,
+                    backgroundReplaceEl = document.querySelector('.pictures .show-me');
+
+                idx = ( idx + 1 + Math.floor(Math.random() * ( backgroundImagesCount - 1 )) ) % backgroundImagesCount;
+                addClass(backgroundReplaceEl, backgroundImages[idx]);
+                setCookie('current_background_idx', idx, 1);
+                var nextId = idx;
+                var bgInterval = setInterval(function()
+                {
+                    removeClass(backgroundReplaceEl, backgroundImages[nextId])
+                    nextId = ( nextId + 1 );
+                    if ( parseInt(backgroundImages.length) === parseInt(nextId) ) {
+                        nextId = 0;
+                    }
+                    addClass(backgroundReplaceEl, backgroundImages[nextId]);
+                }, 5000);
+            });
+        </script>
     </body>
 </html>

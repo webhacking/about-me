@@ -54,11 +54,26 @@ main.container {
 }
 
 .pictures .show-me {
-    background-image : url('../images/hax0r.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+}
+
+.pictures img {
+    width: 100%;
+}
+
+.pictures .show-me.one {
+    background-image : url('../images/optimized/hax0r.jpg');
+}
+
+.pictures .show-me.two {
+    background-image : url('../images/optimized/freeeeeeee.jpg');
+}
+
+.pictures .show-me.three {
+    background-image : url('../images/optimized/real-gangster.jpg');
 }
 
 .about {
@@ -72,9 +87,15 @@ main.container {
 }
 
 .about > .me .headline {
-    font-size: 38px;
-    font-weight: bold;
     margin-top: 20%;
+}
+
+.about > .me .headline > h2 {
+    font-size: 28px;
+    font-weight: 800;
+    display: inline-block;
+    margin: 0px;
+    letter-spacing: -0.2px;
 }
 
 .about > .me .bio {
